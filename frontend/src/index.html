@@ -3,6 +3,9 @@
     <head>
         <meta charset="UTF-8" />
         <title>receiptyt</title>
+        <script src="./assets/rxjs.umd.min.js"></script>
+        <script src="https://unpkg.com/petite-vue"></script>
+        <script src="https://unpkg.com/@vueuse/rxjs@10.5.0/index.iife.min.js"></script>
     </head>
     <body>
         <h1>this is the app</h1>
@@ -10,6 +13,7 @@
         <script>
         </script>
         <script type="module" src="./scripts/main.js"></script>
+        <!-- must go after vue import -->
         <div v-scope="{ count: 0 }">
           {{ count }}
           <button @click="count++">inc</button>
