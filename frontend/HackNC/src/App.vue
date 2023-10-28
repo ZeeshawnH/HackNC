@@ -1,47 +1,35 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+    import { ref } from 'vue'
+    import FriendAdder from './FriendAdder.vue'
+    import FriendList from './FriendList.vue'
+
+    const count = ref(0);
 </script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+    <h1>friend adder</h1>
+    <FriendAdder />
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
+    <h1>button count</h1>
+    {{ count }}
+    <button @click="count++">inc</button>
 
-  <main>
-    <TheWelcome />
-  </main>
+    <h1>friend list</h1>
+    <FriendList />
 </template>
+<script>
+    import { liveQuery } from "dexie";
+    import { useObservable } from "@vueuse/rxjs";
+    import { db } from "./db";
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>
+    export default {
+        name: "FriendList",
+        setup() {
+          return {
+            db,
+            friends: useObservable(
+                liveQuery(() => db.friends.toArray())
+                ),
+            };
+        },
+    };
+</script>

@@ -1,3 +1,11 @@
+<script setup>
+    defineProps({
+    defaultAge: {
+      type: Number,
+      default: 21,
+    },
+    });
+</script>
 <!-- FriendAdder.vue -->
 <template>
   <fieldset>
@@ -18,16 +26,47 @@
 </template>
 
 <script>
-import { db } from '../db';
+    import { db } from "./db"
+
+    export default {
+        data() {
+            return {
+              status: '',
+              friendName: '',
+              friendAge: this.defaultAge,
+            };
+        },
+        methods: {
+            async addFriend() {
+                console.log("asd")
+                  try {
+                    // Add the new friend!
+                    const id = await db.friends.add({
+                      name: this.friendName,
+                      age: this.friendAge,
+                    });
+
+                    this.status = `Friend ${this.friendName}
+                      successfully added. Got id ${id}`;
+
+                    // Reset form:
+                    this.friendName = '';
+                    this.friendAge = this.defaultAge;
+                  } catch (error) {
+                    this.status = `Failed to add
+                      ${this.friendName}: ${error}`;
+                  }
+            },
+          },
+        }
+</script>
+
+<!--
+<script>
+import { db } from './db.js';
 
 export default {
   name: 'FriendAdder',
-  props: {
-    defaultAge: {
-      type: Number,
-      default: 21,
-    },
-  },
   data: () => {
     return {
       status: '',
@@ -35,26 +74,8 @@ export default {
       friendAge: this.defaultAge,
     };
   },
-  methods: {
-    async addFriend() {
-      try {
-        // Add the new friend!
-        const id = await db.friends.add({
-          name: this.friendName,
-          age: this.friendAge,
-        });
-
-        this.status = `Friend ${this.friendName}
-          successfully added. Got id ${id}`;
-
-        // Reset form:
-        this.friendName = '';
-        this.friendAge = this.defaultAge;
-      } catch (error) {
-        this.status = `Failed to add
-          ${this.friendName}: ${error}`;
-      }
-    },
-  },
+  
 };
 </script>
+
+-->
