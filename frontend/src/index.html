@@ -3,10 +3,15 @@
     <head>
         <meta charset="UTF-8" />
         <title>receiptyt</title>
+        <script type="module" src='https://unpkg.com/dexie@latest/dist/modern/dexie.min.mjs'></script>
     </head>
     <body>
         <h1>this is the app</h1>
         <p>scan ur receipts here</p>
         <script type="module" src="./scripts/main.js"></script>
+        <div v-scope="{ count: 0 }">
+          {{ count }}
+          <button @click="count++">inc</button>
+        </div>
     </body>
 </html>
