@@ -6,3 +6,8 @@ db.version(1).stores({
   friends: '++id, name, age', // Primary key and indexed props
 });
 
+db.friends.add({
+    id: 1,
+    name: "Robbei",
+    age: 67
+});
