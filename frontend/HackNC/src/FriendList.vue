@@ -1,8 +1,8 @@
 <!-- FriendList.vue -->
 <template>
   <ul>
-    <li v-for="friend in friends" :key="friend.id">
-      {{ friend.name }}, {{ friend.age }}
+    <li v-for="item in items" :key="item.id">
+      {{ item.rawName }}, {{ item.price }}
     </li>
   </ul>
 </template>
@@ -17,8 +17,8 @@
     setup() {
       return {
         db,
-        friends: useObservable(
-          liveQuery(() => db.friends.toArray())
+        items: useObservable(
+          liveQuery(() => db.items.toArray())
         ),
       };
     },

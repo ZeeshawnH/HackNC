@@ -1,9 +1,9 @@
 <script setup>
     defineProps({
-    defaultAge: {
-      type: Number,
-      default: 21,
-    },
+        defaultPrice: {
+          type: Number,
+          default: 21,
+        },
     });
 </script>
 <!-- FriendAdder.vue -->
@@ -11,16 +11,16 @@
   <fieldset>
     <legend>Add new friend</legend>
     <label>
-      Name:
-      <input v-model="friendName" type="text" />
+      Raw Name:
+      <input v-model="rawName" type="text" />
     </label>
     <br />
     <label>
-      Age:
-      <input v-model="friendAge" type="number" />
+      Price:
+      <input v-model="price" type="number" />
     </label>
     <br />
-    <button @click="addFriend">Add Friend</button>
+    <button @click="add">Add</button>
     <p>{{ status }}</p>
   </fieldset>
 </template>
@@ -32,29 +32,29 @@
         data() {
             return {
               status: '',
-              friendName: '',
-              friendAge: this.defaultAge,
+              rawName: '',
+              price: this.defaultPrice,
             };
         },
         methods: {
-            async addFriend() {
-                console.log("asd")
+            async add() {
                   try {
-                    // Add the new friend!
-                    const id = await db.friends.add({
-                      name: this.friendName,
-                      age: this.friendAge,
+                    const id = await db.items.add({
+                        rawName: this.rawName,
+                        generalName: "general nane",
+                        category: "produce",
+                        store: this.price,
+                        time: Date.now(),
+                        price: 4,
                     });
 
-                    this.status = `Friend ${this.friendName}
-                      successfully added. Got id ${id}`;
+                    this.status = 'something added idk what this is';
 
                     // Reset form:
-                    this.friendName = '';
-                    this.friendAge = this.defaultAge;
+                    this.rawName = '';
+                    this.price = this.defaultPrice;
                   } catch (error) {
-                    this.status = `Failed to add
-                      ${this.friendName}: ${error}`;
+                    this.status = 'Failed to add something';
                   }
             },
           },
