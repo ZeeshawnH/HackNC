@@ -3,11 +3,11 @@ import Dexie from 'dexie';
 
 export const db = new Dexie('myDatabase');
 db.version(1).stores({
-  friends: '++id, name, age', // Primary key and indexed props
+  items: '++id, rawName, generalName, store, date', // Primary key and indexed props
 });
 
-db.friends.add({
+db.items.add({
     id: 1,
-    name: "Robbei",
-    age: 67
+    generalName: "Robbei",
+    store: "FoodLion"
 });

@@ -60,22 +60,3 @@
           },
         }
 </script>
-
-<!--
-<script>
-import { db } from './db.js';
-
-export default {
-  name: 'FriendAdder',
-  data: () => {
-    return {
-      status: '',
-      friendName: '',
-      friendAge: this.defaultAge,
-    };
-  },
-  
-};
-</script>
-
--->
