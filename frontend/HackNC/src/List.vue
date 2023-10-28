@@ -1,4 +1,3 @@
-<!-- FriendList.vue -->
 <template>
   <ul>
     <li v-for="item in items" :key="item.id">
@@ -13,7 +12,6 @@
   import { db } from "./db";
 
   export default {
-    name: "FriendList",
     setup() {
       return {
         db,
