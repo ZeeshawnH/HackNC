@@ -1,12 +1,12 @@
 <script setup>
-import { ref } from "vue"
+import { ref, reactive } from "vue"
 import { liveQuery } from "dexie";
 import { useObservable } from "@vueuse/rxjs";
 import { db } from "./db";
 
-const items = ref(useObservable(
+const items = useObservable(
   liveQuery(() => db.items.toArray())
-))
+)
 </script>
 
 <template>
@@ -16,7 +16,7 @@ const items = ref(useObservable(
     </li>
   </ul>
 </template>
-
+<!--
 <script>
   import { liveQuery } from "dexie";
   import { useObservable } from "@vueuse/rxjs";
@@ -34,3 +34,4 @@ const items = ref(useObservable(
     },
   };
 </script>
+-->

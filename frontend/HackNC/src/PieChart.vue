@@ -17,16 +17,43 @@ const items = ref(useObservable(
   liveQuery(() => db.items.toArray())
 ))
 
-console.log(items)
+console.log(items.value)
+console.log("length " + items.length)
+
+let produceNumber = 0;
+let dairyNumber = 0;
+let deliNumber = 0;
+let bakeryNumber = 0;
+let generalNumber = 0;
+/*
+for (let i = 0; i < items.length; i++) {
+if (items[i].category == "Produce") {
+    produceNumber++;
+}
+if (items[i].category == "Dairy") {
+    dairyNumber++;
+}
+if (items[i].category == "Deli") {
+    deliNumber++;
+}
+if (items[i].category == "Bakery") {
+    bakeryNumber++;
+}
+if (items[i].category == "General") {
+    generalNumber++;
+}
+}*/
+
+console.log(produceNumber);
 
 const data = ref({
-  labels: ["Produce", "Dairy", "Deli", "Bakery", "General"],
-  datasets: [
-    {
-      backgrondColor: ['#418883', '#E46651', '#00d8FF', '#DD1816'],
-      data: [2, 2, 3, 2]
-    }
-  ]
+labels: ["Produce", "Dairy", "Deli", "Bakery", "General"],
+          datasets: [
+            {
+              backgroundColor: ['#418883', '#E46651', '#00d8FF', '#DD1816'],
+              data: [produceNumber, dairyNumber, deliNumber, bakeryNumber, generalNumber]
+            }
+          ]
 })
 </script>
 

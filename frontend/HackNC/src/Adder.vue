@@ -10,27 +10,28 @@ defineProps({
     },
 });*/
 
+const defaultCategory = 'Dairy';
 const defaultPrice = 21;
 
 const status = ref('');
-const rawName = ref('');
+const category = ref(defaultCategory);
 const price = ref(defaultPrice);
 
 async function add() {
   try {
     const id = await db.items.add({
-        rawName: rawName.value,
+        rawName: "raw name",
         generalName: "general nane",
-        category: "produce",
-        store: price.value,
+        category: category.value,
+        store: "foodlion",
         time: Date.now(),
-        price: 4,
+        price: price.value,
     });
 
     status.value = 'something added idk what this is';
 
     // Reset form:
-    rawName.value = '';
+    category.value = defaultCategory;
     price.value = defaultPrice;
   } catch (error) {
     status.value = 'Failed to add something ' + error;
@@ -42,13 +43,12 @@ async function add() {
   <fieldset>
     <legend>Add new friend</legend>
     <label>
-      Raw Name:
-      <input v-model="rawName" type="text" />
+      Category:
+      <input v-model="category" type="text" />
     </label>
-    <br />
     <label>
-      Price:
-      <input v-model="price" type="number" />
+      price:
+      <input v-model="price" type="text" />
     </label>
     <br />
     <button @click="add">Add</button>
