@@ -11,13 +11,13 @@
   <fieldset>
     <legend>Add new friend</legend>
     <label>
-      Raw Name:
-      <input v-model="rawName" type="text" />
+      Category:
+      <input v-model="category" type="text" />
     </label>
     <br />
     <label>
-      Price:
-      <input v-model="price" type="number" />
+      Dairy:
+      <input v-model="dairy" type="text" />
     </label>
     <br />
     <button @click="add">Add</button>
@@ -40,9 +40,9 @@
             async add() {
                   try {
                     const id = await db.items.add({
-                        rawName: this.rawName,
+                        rawName: "",
                         generalName: "general nane",
-                        category: "produce",
+                        category: this.category,
                         store: "Store",
                         time: Date.now(),
                         price: this.price,
