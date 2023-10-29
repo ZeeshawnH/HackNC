@@ -3,7 +3,7 @@
     import Adder from './Adder.vue'
     import List from './List.vue'
 
-    import BarChart from './BarChart.vue'
+    import PieChart from './PieChart.vue'
 
     const count = ref(0);
 </script>
@@ -17,5 +17,5 @@
 
     <h1>friend list</h1>
     <List />
-    <BarChart />
+    <PieChart />
 </template>
