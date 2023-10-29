@@ -48,7 +48,7 @@ async function add() {
     </label>
     <label>
       price:
-      <input v-model="price" type="text" />
+      <input v-model="price" type="number" />
     </label>
     <br />
     <button @click="add">Add</button>

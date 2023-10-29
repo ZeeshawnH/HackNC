@@ -12,7 +12,7 @@ const items = useObservable(
 <template>
   <ul>
     <li v-for="item in items" :key="item.id">
-      {{ item.rawName }}, {{ item.price }}
+        {{ item.rawName }}, {{ item.category }}, {{ item.price }}
     </li>
   </ul>
 </template>
