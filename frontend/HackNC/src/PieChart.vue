@@ -12,6 +12,7 @@ ChartJS.register(Title, Tooltip, Legend, ArcElement, CategoryScale, LinearScale)
 const items = useObservable(
   liveQuery(() => db.items.toArray())
 )
+
 const options = ref({
       responsive: true,
       maintainAspectRation: false
@@ -19,34 +20,25 @@ const options = ref({
 
 
 const data = computed(() => {
-let produceNumber = 0;
-let dairyNumber = 0;
-let deliNumber = 0;
-let bakeryNumber = 0;
-let generalNumber = 0;
-for (let i = 0; i < items.length; i++) {
-if (items[i].category == "Produce") {
-    produceNumber++;
+let map = new Map();
+if (items.value) {
+    for (let item of items.value) {
+        let value = map.get(item.category)
+        if (!value) value = 0
+        value += item.price
+        map.set(item.category, value)
+    }
 }
-if (items[i].category == "Dairy") {
-    dairyNumber++;
-}
-if (items[i].category == "Deli") {
-    deliNumber++;
-}
-if (items[i].category == "Bakery") {
-    bakeryNumber++;
-}
-if (items[i].category == "General") {
-    generalNumber++;
-}
+let array = []
+for (const [key, value] of map) {
+    array.push(value)
 }
     return {
         labels: ["Produce", "Dairy", "Deli", "Bakery", "General"],
       datasets: [
         {
           backgroundColor: ['#418883', '#E46651', '#00d8FF', '#DD1816'],
-          data: [produceNumber, dairyNumber, deliNumber, bakeryNumber, generalNumber]
+          data: array
         }
       ]
 }
