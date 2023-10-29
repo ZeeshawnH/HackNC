@@ -1,9 +1,9 @@
 <script setup>
-    import { ref } from 'vue'
-    import Adder from './Adder.vue'
-    import List from './List.vue'
+import { ref } from 'vue'
+import Adder from './Adder.vue'
+import List from './List.vue'
 
-    const count = ref(0);
+const count = ref(0);
 </script>
 <template>
     <h1>adder</h1>
