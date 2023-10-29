@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import Adder from './Adder.vue'
 import List from './List.vue'
-
+import './style.css'
 import PieChart from './PieChart.vue'
 
 const count = ref(0);
