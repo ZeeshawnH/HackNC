@@ -11,6 +11,7 @@
   import { useObservable } from "@vueuse/rxjs";
   import { db } from "./db";
 
+  console.log((await db.items.toArray())[0]);
   export default {
     setup() {
       return {

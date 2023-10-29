@@ -43,9 +43,9 @@
                         rawName: this.rawName,
                         generalName: "general nane",
                         category: "produce",
-                        store: this.price,
+                        store: "Store",
                         time: Date.now(),
-                        price: 4,
+                        price: this.price,
                     });
 
                     this.status = 'something added idk what this is';
@@ -54,7 +54,7 @@
                     this.rawName = '';
                     this.price = this.defaultPrice;
                   } catch (error) {
-                    this.status = 'Failed to add something';
+                    this.status = `Failed to add something: ${error.message}`;
                   }
             },
           },

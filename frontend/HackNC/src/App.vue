@@ -3,6 +3,8 @@
     import Adder from './Adder.vue'
     import List from './List.vue'
 
+    import BarChart from './BarChart.vue'
+
     const count = ref(0);
 </script>
 <template>
@@ -15,4 +17,5 @@
 
     <h1>friend list</h1>
     <List />
+    <BarChart />
 </template>
