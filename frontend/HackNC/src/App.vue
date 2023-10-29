@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import Adder from './Adder.vue'
 import List from './List.vue'
 import PieChart from './PieChart.vue'
+import QuantityPieChart from './QuantityPieChart.vue'
 import './style.css'
 
 const count = ref(0);
@@ -19,4 +20,5 @@ const count = ref(0);
     <h1>friend list</h1>
     <List />
     <PieChart />
+    <QuantityPieChart />
 </template>
