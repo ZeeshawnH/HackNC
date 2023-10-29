@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { Pie } from 'vue-chartjs'
 import { liveQuery } from "dexie";
 import { useObservable } from "@vueuse/rxjs";
@@ -8,24 +8,22 @@ import { db } from './db.js'
 
 ChartJS.register(Title, Tooltip, Legend, ArcElement, CategoryScale, LinearScale)
 
+
+const items = useObservable(
+  liveQuery(() => db.items.toArray())
+)
 const options = ref({
       responsive: true,
       maintainAspectRation: false
 })
 
-const items = ref(useObservable(
-  liveQuery(() => db.items.toArray())
-))
 
-console.log(items.value)
-console.log("length " + items.length)
-
+const data = computed(() => {
 let produceNumber = 0;
 let dairyNumber = 0;
 let deliNumber = 0;
 let bakeryNumber = 0;
 let generalNumber = 0;
-/*
 for (let i = 0; i < items.length; i++) {
 if (items[i].category == "Produce") {
     produceNumber++;
@@ -42,18 +40,16 @@ if (items[i].category == "Bakery") {
 if (items[i].category == "General") {
     generalNumber++;
 }
-}*/
-
-console.log(produceNumber);
-
-const data = ref({
-labels: ["Produce", "Dairy", "Deli", "Bakery", "General"],
-          datasets: [
-            {
-              backgroundColor: ['#418883', '#E46651', '#00d8FF', '#DD1816'],
-              data: [produceNumber, dairyNumber, deliNumber, bakeryNumber, generalNumber]
-            }
-          ]
+}
+    return {
+        labels: ["Produce", "Dairy", "Deli", "Bakery", "General"],
+      datasets: [
+        {
+          backgroundColor: ['#418883', '#E46651', '#00d8FF', '#DD1816'],
+          data: [produceNumber, dairyNumber, deliNumber, bakeryNumber, generalNumber]
+        }
+      ]
+}
 })
 </script>
 
