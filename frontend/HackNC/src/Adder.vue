@@ -55,38 +55,3 @@ async function add() {
     <p>{{ status }}</p>
   </fieldset>
 </template>
-<script>
-    import { db } from "./db"
-
-    export default {
-        data() {
-            return {
-              status: '',
-              rawName: '',
-              price: this.defaultPrice,
-            };
-        },
-        methods: {
-            async add() {
-                  try {
-                    const id = await db.items.add({
-                        rawName: this.rawName,
-                        generalName: "general nane",
-                        category: "produce",
-                        store: "Store",
-                        time: Date.now(),
-                        price: this.price,
-                    });
-
-                    this.status = 'something added idk what this is';
-
-                    // Reset form:
-                    this.rawName = '';
-                    this.price = this.defaultPrice;
-                  } catch (error) {
-                    this.status = `Failed to add something: ${error.message}`;
-                  }
-            },
-          },
-        }
-</script>
