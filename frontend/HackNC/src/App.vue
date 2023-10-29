@@ -7,7 +7,7 @@
 </script>
 <template>
     <h1>adder</h1>
-    <Adder />
+    <Adder/>
 
     <h1>button count</h1>
     {{ count }}
