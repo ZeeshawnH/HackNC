@@ -1,13 +1,15 @@
 <script setup>
-    import { ref } from 'vue'
-    import Adder from './Adder.vue'
-    import List from './List.vue'
+import { ref } from 'vue'
+import Adder from './Adder.vue'
+import List from './List.vue'
+import './style.css'
 
-    const count = ref(0);
+const count = ref(0);
 </script>
 <template>
+    <button class="import-button">IMPORT</button>
     <h1>adder</h1>
-    <Adder/>
+    <Adder />
 
     <h1>button count</h1>
     {{ count }}
